@@ -10,3 +10,7 @@ app.MapGet("/segunda", () => "segunda funcionalidade");
 
 
 app.Run();
+
+Produto produto = new Produto();
+produto.setValor(10);
+Console.writeLine("Preço ", setValor produto.getValor());

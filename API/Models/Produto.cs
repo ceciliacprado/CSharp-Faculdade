@@ -1,19 +1,20 @@
 namespace API.Models;
 
+using System;
 public class Produto
 {
-    private double valor;
+    //se tiver mais de um construtor com nomes iguais os parâmetros devem ser diferentes 
+    public Produto()
+    { //identificador unico global 
+        Id = Guid.NewGuid().ToString();
+        CriadoEm = DateTime.Now;
 
-    //getters(pega a informação) e setters (coloca a informação dentro do atributo do valor)
-
-    public void setValor(double valor)
-    {
-        this.valor = valor * 3;
     }
 
-    public void getValor()
-    {
-        return this.valor;
-    }
+    public string Id { get; set; }
+    public string Nome { get; set; }
+    public double Valor { get; set; }
+    public int Quantidade { get; set; }
+    public DateTime CriadoEm { get; set; }
 
 }

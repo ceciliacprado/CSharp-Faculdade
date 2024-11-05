@@ -11,24 +11,37 @@ function ConsultarCep(){
     //evento de carregamento do componente, para executar o código ao abrir e carregar o componente 
     //Axios - bibloteca de requisitção 
 
-    fetch("https://viacep.com.br/ws/01001000/json/")
+  });
+
+  function consultar(){
+    fetch("https://viacep.com.br/ws/" + cep + "/json/")
     .then((resposta) => resposta.json()) 
     .then((endereco) => {
      setLocalidade(endereco.localidade); 
      setEstado(endereco.estado);
      setLogradouro(endereco.logradouro);
     }); 
-  });
+  }
+
+  function sairFoco(){
+    consultar(); 
+  }
 
   function digitar(event: any) {
     setCep(event.target.value); 
+  }
+
+  function clicar(){
+    consultar(); 
   }
 
   return(
     <div id="consultar_cep">
     <h1>Consultar Cep</h1>
 
-    <input type="text" placeholder="Digite seu CEP" onChange={digitar} ></input>
+    <input type="text" placeholder="Digite seu CEP" onChange={digitar} onBlur={sairFoco}></input>
+
+    <button onClick={clicar}>Consultar Cep</button>
 
     <p>{localidade}</p>
     <p>{estado}</p>
